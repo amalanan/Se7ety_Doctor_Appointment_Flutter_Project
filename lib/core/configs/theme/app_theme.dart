@@ -4,7 +4,7 @@ class AppTheme {
 
   static final appTheme = ThemeData(
       primaryColor: AppColors.primary,
-      scaffoldBackgroundColor: AppColors.lightBackground,
+      scaffoldBackgroundColor: Colors.white,
       brightness: Brightness.light,
       fontFamily: 'Cairo',
       sliderTheme: SliderThemeData(

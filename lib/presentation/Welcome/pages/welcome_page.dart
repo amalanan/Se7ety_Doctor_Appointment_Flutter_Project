@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../imports.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -65,12 +64,12 @@ class WelcomePage extends StatelessWidget {
                     SizedBox(height: 50),
                     ElevatedButton(
                       onPressed: () {
-                        /*  Navigator.pushReplacement(
+                          Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (BuildContext context) => const WelcomePage(),
+                            builder: (BuildContext context) =>  DoctorSignIn(),
                           ),
-                        );*/
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white.withOpacity(0.6),
@@ -95,12 +94,12 @@ class WelcomePage extends StatelessWidget {
                     SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
-                        /*  Navigator.pushReplacement(
+                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (BuildContext context) => const WelcomePage(),
+                            builder: (BuildContext context) => PatientSignIn(),
                           ),
-                        );*/
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white.withOpacity(0.6),
