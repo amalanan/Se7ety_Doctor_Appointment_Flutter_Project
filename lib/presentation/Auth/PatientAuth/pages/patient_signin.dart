@@ -9,20 +9,17 @@ class PatientSignIn extends StatelessWidget {
     return Scaffold(
       body: SignIn(
         roleText: 'مريض',
-        onPressedHomeButton: () {
+        homeNavigationButton:
+            () {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => PatientHomeScreen(),
-            ),
+            MaterialPageRoute(builder: (_) => PatientHomeScreen()),
           );
         },
         onPressedRegisterButton: () {
-          Navigator.pushReplacement(
+          Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => PatientRegister(),
-            ),
+            MaterialPageRoute(builder: (_) => PatientRegister()),
           );
         },
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../../../../imports.dart';
+
 class PatientRegister extends StatelessWidget {
   const PatientRegister({super.key});
 
@@ -9,12 +9,10 @@ class PatientRegister extends StatelessWidget {
     return Scaffold(
       body: Register(
         roleText: 'مريض',
-        onPressedHomeButton: () {
+        homeNavigationButton: () {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => PatientHomeScreen(),
-            ),
+            MaterialPageRoute(builder: (_) => PatientHomeScreen()),
           );
         },
         onPressedSignInButton: () {

@@ -9,12 +9,10 @@ class DoctorRegister extends StatelessWidget {
     return Scaffold(
       body: Register(
         roleText: 'دكتور',
-        onPressedHomeButton: () {
+        homeNavigationButton: () {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => DoctorHomeScreen(),
-            ),
+            MaterialPageRoute(builder: (_) => DoctorRegisterContinue()),
           );
         },
         onPressedSignInButton: () {

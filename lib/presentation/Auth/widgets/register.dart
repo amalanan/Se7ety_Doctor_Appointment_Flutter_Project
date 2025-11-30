@@ -5,11 +5,11 @@ class Register extends StatelessWidget {
   Register({
     super.key,
     required this.roleText,
-    required this.onPressedHomeButton,
     required this.onPressedSignInButton,
+    required this.homeNavigationButton,
   });
 
-  final VoidCallback onPressedHomeButton;
+  final VoidCallback homeNavigationButton;
   final VoidCallback onPressedSignInButton;
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -49,7 +49,27 @@ class Register extends StatelessWidget {
               _passwordField(context),
               SizedBox(height: 20),
               BasicAppButton(
-                onPressed: onPressedHomeButton,
+                onPressed: () async {
+                  var result = await sl<RegisterUseCase>().call(
+                    params: CreateUserReq(
+                      name: _nameController.text,
+                      email: _emailController.text,
+                      password: _passwordController.text,
+                      role: roleText,
+                    ),
+                  );
+                  result.fold(
+                    (l) {
+                      var snackbar = SnackBar(content: Text(l));
+                      ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                    },
+                    (r) {
+                      print(result);
+                      homeNavigationButton();
+
+                    },
+                  );
+                },
                 circularBorder: 50,
                 buttonText: 'تسجيل حساب',
               ),
@@ -80,7 +100,7 @@ class Register extends StatelessWidget {
       controller: _nameController,
       keyboardType: TextInputType.name,
       decoration: InputDecoration(
-        hintText: 'Sayed@example.com',
+        hintText: 'Sayed',
         hintStyle: TextStyle(color: Colors.grey),
         suffixIcon: Padding(
           padding: const EdgeInsets.all(15.0),

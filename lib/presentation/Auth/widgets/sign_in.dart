@@ -5,11 +5,11 @@ class SignIn extends StatelessWidget {
   SignIn({
     super.key,
     required this.roleText,
-    required this.onPressedHomeButton,
+    required this.homeNavigationButton,
     required this.onPressedRegisterButton,
   });
 
-  final VoidCallback onPressedHomeButton;
+  final VoidCallback homeNavigationButton;
   final VoidCallback onPressedRegisterButton;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -51,7 +51,24 @@ class SignIn extends StatelessWidget {
               ),
               SizedBox(height: 20),
               BasicAppButton(
-                onPressed: onPressedHomeButton,
+                onPressed: () async {
+                  var result = await sl<SignInUseCase>().call(
+                    params: SignInUserReq(
+                      email: _emailController.text,
+                      password: _passwordController.text,
+                      role: roleText,
+                    ),
+                  );
+                  result.fold(
+                        (l) {
+                      var snackbar = SnackBar(content: Text(l));
+                      ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                    },
+                        (r) {
+                      homeNavigationButton();
+                    },
+                  );
+                },
                 circularBorder: 50,
                 buttonText: 'تسجيل الدخول',
               ),

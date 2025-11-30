@@ -7,21 +7,21 @@ class DoctorSignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SignIn(roleText: 'دكتور', onPressedHomeButton: () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => DoctorHomeScreen(),
-          ),
-        );
-      }, onPressedRegisterButton:  () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => DoctorRegister(),
-          ),
-        );
-      }),
+      body: SignIn(
+        roleText: 'دكتور',
+        homeNavigationButton: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (_) => DoctorHomeScreen()),
+          );
+        },
+        onPressedRegisterButton: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (_) => DoctorRegister()),
+          );
+        },
+      ),
     );
   }
 }

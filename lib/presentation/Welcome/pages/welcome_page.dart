@@ -64,10 +64,10 @@ class WelcomePage extends StatelessWidget {
                     SizedBox(height: 50),
                     ElevatedButton(
                       onPressed: () {
-                          Navigator.pushReplacement(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (BuildContext context) =>  DoctorSignIn(),
+                            builder: (BuildContext context) => DoctorSignIn(),
                           ),
                         );
                       },
@@ -94,7 +94,7 @@ class WelcomePage extends StatelessWidget {
                     SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
-                         Navigator.pushReplacement(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (BuildContext context) => PatientSignIn(),
