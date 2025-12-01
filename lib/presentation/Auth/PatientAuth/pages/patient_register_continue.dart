@@ -23,7 +23,6 @@ class _PatientRegisterContinueState extends State<PatientRegisterContinue> {
   }
 
   final TextEditingController bioController = TextEditingController();
-
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController imageUrlController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
