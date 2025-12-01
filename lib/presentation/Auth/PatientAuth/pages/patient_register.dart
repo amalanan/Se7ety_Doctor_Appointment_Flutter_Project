@@ -12,7 +12,7 @@ class PatientRegister extends StatelessWidget {
         homeNavigationButton: () {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (_) => PatientHomeScreen()),
+            MaterialPageRoute(builder: (_) => PatientRegisterContinue()),
           );
         },
         onPressedSignInButton: () {

@@ -29,3 +29,6 @@ export 'data/repository/auth/auth_repository_implementation.dart';
 export  'package:se7ety_project/presentation/Auth/DoctorAuth/pages/doctor_register_continue.dart';
 export '../../../data/models/complete_doctor_registeration_request.dart';
 export  '../../../../domain/usecases/auth/complete_doctor_registeration_usecase.dart';
+export '../../../data/models/complete_patient_registeration_request.dart';
+export 'domain/usecases/auth/complete_patient_registeration_usecase.dart';
+export 'package:se7ety_project/presentation/Auth/PatientAuth/pages/patient_register_continue.dart';

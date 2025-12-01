@@ -7,8 +7,14 @@ abstract class AuthFirebaseService {
   Future<Either> signIn(SignInUserReq signInUserReq);
 
   Future<Either> register(CreateUserReq createUserReq);
-  Future<Either> completeDoctorInfo(CompleteDoctorRegisterationRequest completeDrRegisterReq);
 
+  Future<Either> completeDoctorInfo(
+    CompleteDoctorRegisterationRequest completeDrRegisterReq,
+  );
+
+  Future<Either> completePatientInfo(
+    CompletePatientRegisterationRequest completePatientRegisterReq,
+  );
 }
 
 class AuthFirebaseServiceImpl implements AuthFirebaseService {
@@ -69,20 +75,38 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
   }
 
   @override
-  Future<Either> completeDoctorInfo(CompleteDoctorRegisterationRequest completeDrRegisterReq) async {
-      try {
-        final user = FirebaseAuth.instance.currentUser;
-        if (user == null) return const Left('المستخدم غير موجود');
+  Future<Either> completeDoctorInfo(
+    CompleteDoctorRegisterationRequest completeDrRegisterReq,
+  ) async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null) return const Left('المستخدم غير موجود');
 
-        await FirebaseFirestore.instance
-            .collection('se7ety_users')
-            .doc(user.uid)
-            .set(completeDrRegisterReq.toMap(), SetOptions(merge: true)); // ✅ نستخدم toMap من الـ Request
-
-        return const Right('تم إكمال البيانات بنجاح');
-      } catch (e) {
-        return Left('حدث خطأ: ${e.toString()}');
-      }
+      await FirebaseFirestore.instance
+          .collection('se7ety_users')
+          .doc(user.uid)
+          .set(completeDrRegisterReq.toMap(), SetOptions(merge: true));
+      return const Right('تم إكمال البيانات بنجاح');
+    } catch (e) {
+      return Left('حدث خطأ: ${e.toString()}');
+    }
   }
 
+  @override
+  Future<Either> completePatientInfo(
+    CompletePatientRegisterationRequest completePatientRegisterReq,
+  ) async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null) return const Left('المستخدم غير موجود');
+
+      await FirebaseFirestore.instance
+          .collection('se7ety_users')
+          .doc(user.uid)
+          .set(completePatientRegisterReq.toMap(), SetOptions(merge: true));
+      return const Right('تم إكمال البيانات بنجاح');
+    } catch (e) {
+      return Left('حدث خطأ: ${e.toString()}');
+    }
+  }
 }

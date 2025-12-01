@@ -9,4 +9,7 @@ abstract class AuthRepository {
   Future<Either> completeDoctorInfo(
     CompleteDoctorRegisterationRequest completeDrRegisterReq,
   );
+  Future<Either> completePatientInfo(
+      CompletePatientRegisterationRequest completePatientRegisterReq,
+      );
 }

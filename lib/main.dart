@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: AppTheme.appTheme,
       debugShowCheckedModeBanner: false,
-      home: DoctorRegister(),
+      home: SplashScreen(),
     );
   }
 }

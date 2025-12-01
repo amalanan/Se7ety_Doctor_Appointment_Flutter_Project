@@ -17,4 +17,8 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<Either> completeDoctorInfo(CompleteDoctorRegisterationRequest completeDrRegisterReq) async {
     return await sl<AuthFirebaseService>().completeDoctorInfo(completeDrRegisterReq);
   }
+  @override
+  Future<Either> completePatientInfo(CompletePatientRegisterationRequest completePatientRegisterReq) async {
+    return await sl<AuthFirebaseService>().completePatientInfo(completePatientRegisterReq);
+  }
 }

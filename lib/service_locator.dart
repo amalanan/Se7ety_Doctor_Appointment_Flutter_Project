@@ -1,5 +1,4 @@
 import 'package:get_it/get_it.dart';
-import 'package:se7ety_project/domain/usecases/auth/complete_doctor_registeration_usecase.dart';
 import 'imports.dart';
 
 
@@ -10,6 +9,7 @@ Future<void> initializeDependencies() async{
   sl.registerSingleton<AuthRepository>(AuthRepositoryImpl());
   sl.registerSingleton<RegisterUseCase>(RegisterUseCase());
   sl.registerSingleton<CompleteDoctorRegisterationUsecase>(CompleteDoctorRegisterationUsecase());
+  sl.registerSingleton<CompletePatientRegisterationUsecase>(CompletePatientRegisterationUsecase());
   sl.registerSingleton<SignInUseCase>(SignInUseCase());
 
 }
