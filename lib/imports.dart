@@ -27,3 +27,5 @@ export 'domain/usecases/auth/signin_usecase.dart';
 export '../../domain/entities/auth/user.dart';
 export 'data/repository/auth/auth_repository_implementation.dart';
 export  'package:se7ety_project/presentation/Auth/DoctorAuth/pages/doctor_register_continue.dart';
+export '../../../data/models/complete_doctor_registeration_request.dart';
+export  '../../../../domain/usecases/auth/complete_doctor_registeration_usecase.dart';

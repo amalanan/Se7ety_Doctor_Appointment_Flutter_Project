@@ -66,7 +66,6 @@ class Register extends StatelessWidget {
                     (r) {
                       print(result);
                       homeNavigationButton();
-
                     },
                   );
                 },
@@ -98,7 +97,7 @@ class Register extends StatelessWidget {
   Widget _nameField(BuildContext context) {
     return TextField(
       controller: _nameController,
-      keyboardType: TextInputType.name,
+      // keyboardType: TextInputType.name,
       decoration: InputDecoration(
         hintText: 'Sayed',
         hintStyle: TextStyle(color: Colors.grey),

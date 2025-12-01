@@ -60,11 +60,11 @@ class SignIn extends StatelessWidget {
                     ),
                   );
                   result.fold(
-                        (l) {
+                    (l) {
                       var snackbar = SnackBar(content: Text(l));
                       ScaffoldMessenger.of(context).showSnackBar(snackbar);
                     },
-                        (r) {
+                    (r) {
                       homeNavigationButton();
                     },
                   );

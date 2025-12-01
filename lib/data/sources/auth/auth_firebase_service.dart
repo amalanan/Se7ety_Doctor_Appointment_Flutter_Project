@@ -7,6 +7,8 @@ abstract class AuthFirebaseService {
   Future<Either> signIn(SignInUserReq signInUserReq);
 
   Future<Either> register(CreateUserReq createUserReq);
+  Future<Either> completeDoctorInfo(CompleteDoctorRegisterationRequest completeDrRegisterReq);
+
 }
 
 class AuthFirebaseServiceImpl implements AuthFirebaseService {
@@ -20,7 +22,7 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
       return Right('تم تسجيل الدخول بنجاح');
     } on FirebaseAuthException catch (e) {
       String message = '';
-      if (e.code == 'Invalid Email') {
+      if (e.code == 'invalid-email') {
         message = 'البريد الإلكتروني غير صالح';
       } else if (e.code == 'wrong-password') {
         message = 'كلمة المرور غير صحيحة';
@@ -40,7 +42,7 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
 
       // 2️⃣ إعداد بيانات Firestore حسب الدور
       Map<String, dynamic> userData;
-      if (createUserReq.role== 'دكتور') {
+      if (createUserReq.role == 'دكتور') {
         userData = createUserReq.doctorToMap();
       } else {
         userData = createUserReq.patientToMap();
@@ -54,7 +56,7 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
 
       return Right('تم التسجيل بنجاح');
     } on FirebaseAuthException catch (e) {
-      String message = '';
+      String message = 'أدخل بيانات';
       if (e.code == 'weak-password') {
         message = 'كلمة المرور ضعيفة';
       } else if (e.code == 'email-already-in-use') {
@@ -64,6 +66,23 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
       }
       return Left(message);
     }
+  }
+
+  @override
+  Future<Either> completeDoctorInfo(CompleteDoctorRegisterationRequest completeDrRegisterReq) async {
+      try {
+        final user = FirebaseAuth.instance.currentUser;
+        if (user == null) return const Left('المستخدم غير موجود');
+
+        await FirebaseFirestore.instance
+            .collection('se7ety_users')
+            .doc(user.uid)
+            .set(completeDrRegisterReq.toMap(), SetOptions(merge: true)); // ✅ نستخدم toMap من الـ Request
+
+        return const Right('تم إكمال البيانات بنجاح');
+      } catch (e) {
+        return Left('حدث خطأ: ${e.toString()}');
+      }
   }
 
 }
