@@ -18,7 +18,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
     final uid = FirebaseAuth.instance.currentUser!.uid;
 
     final snapshot =
-        await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+    await FirebaseFirestore.instance.collection('Users').doc(uid).get();
 
     return snapshot['name'];
   }
@@ -46,8 +46,8 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
     doctorCard(cardColor: Colors.green.shade200, specialization: 'دكتور قلب'),
     doctorCard(cardColor: Colors.orange.shade100, specialization: 'دكتور عظام'),
     doctorCard(
-      cardColor: Colors.blueAccent.shade100,
-      specialization: 'جراحة عامة',
+      cardColor: Colors.blueGrey.shade100,
+      specialization: 'دكتور جلدية',
     ),
   ];
 
