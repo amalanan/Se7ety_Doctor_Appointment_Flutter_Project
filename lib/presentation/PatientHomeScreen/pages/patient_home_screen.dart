@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../imports.dart';
 
 class PatientHomeScreen extends StatefulWidget {
-  PatientHomeScreen({super.key});
+  const PatientHomeScreen({super.key});
 
   @override
   State<PatientHomeScreen> createState() => _PatientHomeScreenState();
@@ -18,7 +18,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
     final uid = FirebaseAuth.instance.currentUser!.uid;
 
     final snapshot =
-    await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+        await FirebaseFirestore.instance.collection('Users').doc(uid).get();
 
     return snapshot['name'];
   }
@@ -123,6 +123,45 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                           children: [doctorCards[index], SizedBox(width: 20)],
                         );
                       },
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    'الأعلى تقييما',
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.primary,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blue.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: ListTile(
+                      contentPadding: EdgeInsets.all(15),
+                      trailing: TextButton(
+                        onPressed: () {},
+                        child: Icon(Icons.star, color: Colors.orange),
+                      ),
+                      leading: CircleAvatar(
+                        radius: 35,
+                        backgroundImage: AssetImage(AppImages.splashLogo),
+                        backgroundColor: Colors.white,
+                      ),
+                      title: Text(
+                        'علي  بن خالد ',
+                        style: TextStyle(
+                          color: AppColors.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      subtitle: Text(
+                        'جراحة عامة',
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ),
                   ),
                 ],
