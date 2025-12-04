@@ -1,4 +1,4 @@
-export 'package:se7ety_project/presentation/splash/pages/splash_screen.dart';
+export 'package:se7ety_project/presentation/SplashScreen/pages/splash_screen.dart';
 export 'package:se7ety_project/core/configs/theme/app_colors.dart';
 export 'package:se7ety_project/core/configs/theme/app_theme.dart';
 export 'package:se7ety_project/core/configs/assets/app_images.dart';

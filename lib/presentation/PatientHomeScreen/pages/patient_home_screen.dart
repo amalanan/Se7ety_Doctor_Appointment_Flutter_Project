@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../../../imports.dart';
 
 class PatientHomeScreen extends StatefulWidget {
@@ -13,13 +12,12 @@ class PatientHomeScreen extends StatefulWidget {
 
 class _PatientHomeScreenState extends State<PatientHomeScreen> {
   TextEditingController searchController = TextEditingController();
+  late int _currentIndex = 0;
 
   Future<String> getUserName() async {
     final uid = FirebaseAuth.instance.currentUser!.uid;
-
     final snapshot =
         await FirebaseFirestore.instance.collection('Users').doc(uid).get();
-
     return snapshot['name'];
   }
 
@@ -85,7 +83,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                       children: [
                         Text('مرحبا,', style: TextStyle(fontSize: 18)),
                         Text(
-                          '$userName ' + 'أمل',
+                          '$userName ',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -144,7 +142,14 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                       contentPadding: EdgeInsets.all(15),
                       trailing: TextButton(
                         onPressed: () {},
-                        child: Icon(Icons.star, color: Colors.orange),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(' 3 ', style: TextStyle(fontSize: 15)),
+                            Icon(Icons.star, color: Colors.orange, size: 20),
+                          ],
+                        ),
                       ),
                       leading: CircleAvatar(
                         radius: 35,
@@ -167,6 +172,21 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                 ],
               ),
             ),
+          ),
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildNavItem(Icons.home, 'الرئيسية', 0),
+              _buildNavItem(Icons.search, 'البحث', 1),
+              _buildNavItem(Icons.calendar_month, 'المواعيد', 2),
+              _buildNavItem(Icons.person, 'الحساب', 3),
+            ],
           ),
         ),
       ),
@@ -205,6 +225,59 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
           borderSide: BorderSide.none,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNavItem(IconData icon, String label, int index) {
+    final isSelected = _currentIndex == index;
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _currentIndex = index;
+          // هنا تقدري تربطي الشاشات
+          /*
+        if (index == 1) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (_) => MyAppointmentsScreen()));
+        }
+        if (index == 2) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (_) => ProfileScreen()));
+        }
+        */
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(6.0),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
+          decoration: BoxDecoration(
+            color: isSelected ? AppColors.primary : Colors.transparent,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                icon,
+                color: isSelected ? Colors.white : Colors.black,
+                size: 26,
+              ),
+              if (isSelected) ...[
+                const SizedBox(width: 6),
+                Text(
+                  label,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
+                ),
+              ],
+            ],
+          ),
         ),
       ),
     );
