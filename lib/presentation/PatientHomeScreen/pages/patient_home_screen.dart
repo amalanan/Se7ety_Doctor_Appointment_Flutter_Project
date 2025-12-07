@@ -17,7 +17,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
   Future<String> getUserName() async {
     final uid = FirebaseAuth.instance.currentUser!.uid;
     final snapshot =
-        await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+    await FirebaseFirestore.instance.collection('se7ety_users').doc(uid).get();
     return snapshot['name'];
   }
 

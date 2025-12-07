@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'firebase_options.dart';
@@ -10,6 +11,8 @@ void main() async {
   final snapshot =
       await FirebaseFirestore.instance.collection('se7ety_users').get();
   print('Se7ety users count: ${snapshot.docs.length}');
+  print(FirebaseAuth.instance.currentUser?.uid);
+
   await initializeDependencies();
   runApp(MyApp());
 }
