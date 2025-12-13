@@ -10,7 +10,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   final snapshot =
       await FirebaseFirestore.instance.collection('se7ety_users').get();
- // print('Se7ety users count: ${snapshot.docs.length}');
+  print('Se7ety users count: ${snapshot.docs.length}');
   print(FirebaseAuth.instance.currentUser?.displayName);
 
   await initializeDependencies();
