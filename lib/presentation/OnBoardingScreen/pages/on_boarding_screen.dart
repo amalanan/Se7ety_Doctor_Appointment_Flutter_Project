@@ -15,7 +15,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Column(
         children: [
           Padding(
@@ -69,7 +68,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 45),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -85,8 +84,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 26,
-                      vertical: 12,
+                      horizontal: 24,
+                      vertical: 8,
                     ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),

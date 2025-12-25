@@ -15,7 +15,7 @@ class WelcomePage extends StatelessWidget {
           Container(color: Colors.white.withOpacity(0.4)),
           Positioned(
             right: 30,
-            top: 150,
+            top: 105,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -42,7 +42,7 @@ class WelcomePage extends StatelessWidget {
           Positioned(
             right: 25,
             left: 25,
-            bottom: 135,
+            bottom: 60,
             child: Container(
               decoration: BoxDecoration(
                 color: AppColors.primary.withOpacity(0.5),
@@ -74,8 +74,8 @@ class WelcomePage extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white.withOpacity(0.6),
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 150,
-                          vertical: 26,
+                          horizontal: 120,
+                          vertical: 18,
                         ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
@@ -104,8 +104,8 @@ class WelcomePage extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white.withOpacity(0.6),
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 150,
-                          vertical: 26,
+                          horizontal: 120,
+                          vertical: 18,
                         ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
