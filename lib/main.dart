@@ -11,17 +11,14 @@ void main() async {
   final snapshot =
       await FirebaseFirestore.instance.collection('se7ety_users').get();
   print('Se7ety users count: ${snapshot.docs.length}');
-  print(FirebaseAuth.instance.currentUser?.displayName);
+ // print(FirebaseAuth.instance.currentUser?.displayName);
 
   await initializeDependencies();
   runApp(MyApp());
 }
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 075b939aff942e33dc137071ebb4d9e4149f33b3
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
