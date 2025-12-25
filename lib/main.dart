@@ -17,6 +17,11 @@ void main() async {
   runApp(MyApp());
 }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 075b939aff942e33dc137071ebb4d9e4149f33b3
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
