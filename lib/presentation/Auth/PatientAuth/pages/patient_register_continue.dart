@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:se7ety_project/imports.dart';
+
+import '../../../PatientHomeScreen/bloc/patient_home_cubit.dart';
 
 class PatientRegisterContinue extends StatefulWidget {
   PatientRegisterContinue({super.key});
@@ -186,7 +189,10 @@ class _PatientRegisterContinueState extends State<PatientRegisterContinue> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => PatientHomeScreen(),
+                            builder :  (_) => BlocProvider(
+                              create: (_) => PatientHomeCubit()..loadHomeData(),
+                              child:  PatientHomeScreen(),
+                            ),
                           ),
                         );
                       },
