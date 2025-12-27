@@ -1,8 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../imports.dart';
-import '../bloc/patient_home_cubit.dart';
-import '../bloc/patient_home_state.dart';
 
 class PatientHomeScreen extends StatelessWidget {
   PatientHomeScreen({super.key});
@@ -13,16 +10,9 @@ class PatientHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PatientHomeCubit, PatientHomeState>(
       builder: (context, state) {
-        if (state is PatientHomeLoading) {
-          return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
-          );
-        }
 
         if (state is PatientHomeError) {
-          return Scaffold(
-            body: Center(child: Text(state.message)),
-          );
+          return Scaffold(body: Center(child: Text(state.message)));
         }
 
         if (state is PatientHomeLoaded) {
@@ -51,8 +41,7 @@ class PatientHomeScreen extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          const Text('مرحبا,',
-                              style: TextStyle(fontSize: 18)),
+                          const Text('مرحبا,', style: TextStyle(fontSize: 18)),
                           Text(
                             '${state.userName} ',
                             style: TextStyle(
@@ -67,7 +56,9 @@ class PatientHomeScreen extends StatelessWidget {
                       const Text(
                         'احجز الان وكن جزءا من رحلتك الصحية.',
                         style: TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.bold),
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       const SizedBox(height: 20),
                       _searchField(context),
@@ -130,17 +121,18 @@ class PatientHomeScreen extends StatelessWidget {
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: const [
-                                Text(' 3 ',
-                                    style: TextStyle(fontSize: 15)),
-                                Icon(Icons.star,
-                                    color: Colors.orange, size: 20),
+                                Text(' 3 ', style: TextStyle(fontSize: 15)),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.orange,
+                                  size: 20,
+                                ),
                               ],
                             ),
                           ),
                           leading: CircleAvatar(
                             radius: 35,
-                            backgroundImage:
-                            AssetImage(AppImages.splashLogo),
+                            backgroundImage: AssetImage(AppImages.splashLogo),
                             backgroundColor: Colors.white,
                           ),
                           title: Text(
@@ -171,7 +163,12 @@ class PatientHomeScreen extends StatelessWidget {
                     _navItem(context, Icons.home, 'الرئيسية', 0, state),
                     _navItem(context, Icons.search, 'البحث', 1, state),
                     _navItem(
-                        context, Icons.calendar_month, 'المواعيد', 2, state),
+                      context,
+                      Icons.calendar_month,
+                      'المواعيد',
+                      2,
+                      state,
+                    ),
                     _navItem(context, Icons.person, 'الحساب', 3, state),
                   ],
                 ),
@@ -189,34 +186,48 @@ class PatientHomeScreen extends StatelessWidget {
     return TextField(
       controller: searchController,
       keyboardType: TextInputType.name,
-      decoration: InputDecoration(hintText: 'ابحث عن دكتور',
+      decoration: InputDecoration(
+        hintText: 'ابحث عن دكتور',
         hintStyle: TextStyle(color: Colors.black),
-        suffixIcon: ElevatedButton(style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 18),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),),),
-          onPressed: () {},
-          child: Icon(Icons.search, color: Colors.white, size: 30),),
+        suffixIcon: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.primary,
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 18),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
+          onPressed: () {
+
+          },
+          child: Icon(Icons.search, color: Colors.white, size: 30),
+        ),
         filled: true,
         fillColor: Colors.blue.withOpacity(0.09),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20),
-          borderSide: BorderSide.none,),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide.none,
+        ),
         contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
-          borderSide: BorderSide.none,),
+          borderSide: BorderSide.none,
+        ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
-          borderSide: BorderSide.none,),),);
+          borderSide: BorderSide.none,
+        ),
+      ),
+    );
   }
 
-
-  Widget _navItem(BuildContext context,
-      IconData icon,
-      String label,
-      int index,
-      PatientHomeLoaded state,) {
+  Widget _navItem(
+    BuildContext context,
+    IconData icon,
+    String label,
+    int index,
+    PatientHomeLoaded state,
+  ) {
     final isSelected = state.currentIndex == index;
 
     return GestureDetector(
@@ -231,14 +242,19 @@ class PatientHomeScreen extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Icon(icon,
-                color: isSelected ? Colors.white : Colors.black, size: 26),
+            Icon(
+              icon,
+              color: isSelected ? Colors.white : Colors.black,
+              size: 26,
+            ),
             if (isSelected) ...[
               const SizedBox(width: 6),
               Text(
                 label,
                 style: const TextStyle(
-                    color: Colors.white, fontWeight: FontWeight.bold),
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ],
@@ -247,6 +263,7 @@ class PatientHomeScreen extends StatelessWidget {
     );
   }
 }
+
 class doctorCard extends StatelessWidget {
   final String specialization;
   final Color cardColor;

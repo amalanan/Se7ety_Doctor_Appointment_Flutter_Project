@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../imports.dart';
-import '../../../PatientHomeScreen/bloc/patient_home_cubit.dart';
+import '../../../PatientHomeScreen/bloc/home_screen_bloc/patient_home_cubit.dart';
 
 class PatientSignIn extends StatelessWidget {
   const PatientSignIn({super.key});

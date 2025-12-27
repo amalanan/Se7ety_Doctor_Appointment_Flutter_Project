@@ -7,20 +7,18 @@ class PatientHomeCubit extends Cubit<PatientHomeState> {
   PatientHomeCubit() : super(PatientHomeInitial());
 
   Future<void> loadHomeData() async {
-    emit(PatientHomeLoading());
 
     try {
       final uid = FirebaseAuth.instance.currentUser!.uid;
-
       final snapshot =
-      await FirebaseFirestore.instance.collection('se7ety_users').doc(uid).get();
+          await FirebaseFirestore.instance
+              .collection('se7ety_users')
+              .doc(uid)
+              .get();
 
       final name = snapshot['name'];
 
-      emit(PatientHomeLoaded(
-        userName: name,
-        currentIndex: 0,
-      ));
+      emit(PatientHomeLoaded(userName: name, currentIndex: 0));
     } catch (e) {
       emit(PatientHomeError(e.toString()));
     }
@@ -30,11 +28,7 @@ class PatientHomeCubit extends Cubit<PatientHomeState> {
     if (state is PatientHomeLoaded) {
       final currentState = state as PatientHomeLoaded;
 
-      emit(
-        currentState.copyWith(
-          currentIndex: index,
-        ),
-      );
+      emit(currentState.copyWith(currentIndex: index));
     }
   }
 }

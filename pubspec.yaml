@@ -46,6 +46,8 @@ dependencies:
   dartz: ^0.10.1
   just_audio: ^0.10.4
   smooth_page_indicator:
+  device_preview:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
