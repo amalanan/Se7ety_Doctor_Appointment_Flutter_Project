@@ -16,10 +16,14 @@ class PatientSignIn extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder :  (_) => BlocProvider(
-                    create: (_) => PatientHomeCubit()..loadHomeData(),
-                    child:  PatientHomeScreen(),
-                  ),
+                  builder :  (_) => MultiBlocProvider(
+                    providers: [
+                      BlocProvider(create: (_) => PatientHomeCubit()..loadHomeData()),
+                      BlocProvider(create: (_) => SearchScreenCubit()),
+                    ],
+                    child: PatientHomeScreen(),
+                  )
+
                 ),
               );
         },

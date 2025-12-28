@@ -1,9 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import '../../../imports.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
-import '../../models/user.dart';
 
 abstract class AuthFirebaseService {
   Future<Either> signIn(SignInUserReq signInUserReq);
@@ -17,7 +13,6 @@ abstract class AuthFirebaseService {
   Future<Either> completePatientInfo(
     CompletePatientRegisterationRequest completePatientRegisterReq,
   );
-  Future<Either<String, List<Map<String, dynamic>>>>  searchDoctors(String query);
 
 }
 
@@ -114,26 +109,6 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
     }
   }
 
-  @override
-  Future<Either<String, List<Map<String, dynamic>>>> searchDoctors(String query) async {
-    try {
-      final snapshot = await FirebaseFirestore.instance
-          .collection('se7ety_users')
-          .where('role', isEqualTo: 'دكتور')
-          .get();
-
-      final results = snapshot.docs
-          .map((doc) => doc.data())
-          .where((data) =>
-      (data['name'] ?? '').toString().toLowerCase().contains(query.toLowerCase()) ||
-          (data['specialization'] ?? '').toString().toLowerCase().contains(query.toLowerCase()))
-          .toList();
-
-      return Right(results); // Right = نجاح
-    } catch (e) {
-      return Left('حدث خطأ أثناء البحث: ${e.toString()}'); // Left = خطأ
-    }
-  }
 
 }
 

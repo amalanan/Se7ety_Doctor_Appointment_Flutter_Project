@@ -1,23 +1,40 @@
-import 'package:se7ety_project/data/models/user.dart';
-import '../../../../imports.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../data/models/user.dart';
+import 'search_screen_state.dart';
 
 class SearchScreenCubit extends Cubit<SearchScreenState> {
-  final AuthFirebaseService repo; // لازم تمرر الـ repo
+  SearchScreenCubit() : super(SearchInitial());
 
-  SearchScreenCubit({required this.repo}) : super(SearchInitial());
-
+  // دالة البحث عن دكاترة بالاسم
   Future<void> searchDoctors(String query) async {
+    if (query.trim().isEmpty) {
+      emit(SearchInitial()); // لو حقل البحث فارغ
+      return;
+    }
+
     emit(SearchLoading());
 
     try {
-      final eitherResult = await repo.searchDoctors(query);
+      final snapshot = await FirebaseFirestore.instance
+          .collection('se7ety_users')
+          .where('role', isEqualTo: 'دكتور') // فقط الدكاترة
+          .where('name'.toLowerCase(), isEqualTo: query.toLowerCase())
+          .get();
 
-      eitherResult.fold(
-            (error) => emit(SearchError(error)), // Left → خطأ
-            (results) => emit(SearchLoaded(results.cast<UserModel>())), // Right → List<Map<String, dynamic>>
-      );
+      final doctors = snapshot.docs
+          .map((doc) => UserModel.fromJson(doc.data())) // استخدم fromJson
+          .toList();
+      if (doctors.isEmpty) {
+        emit(SearchError('لا يوجد نتائج مطابقة'));
+      } else {
+        emit(SearchLoaded(doctors));
+      }
     } catch (e) {
-      emit(SearchError('حدث خطأ غير متوقع: ${e.toString()}'));
+      emit(SearchError('حدث خطأ أثناء البحث: ${e.toString()}'));
     }
+  }
+  void clearSearch() {
+    emit(SearchInitial());
   }
 }

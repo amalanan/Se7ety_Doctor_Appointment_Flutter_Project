@@ -190,9 +190,18 @@ class _PatientRegisterContinueState extends State<PatientRegisterContinue> {
                           context,
                           MaterialPageRoute(
                             builder:
-                                (_) => BlocProvider(
-                                  create:
-                                      (_) => PatientHomeCubit()..loadHomeData(),
+                                (_) => MultiBlocProvider(
+                                  providers: [
+                                    BlocProvider(
+                                      create:
+                                          (_) =>
+                                              PatientHomeCubit()
+                                                ..loadHomeData(),
+                                    ),
+                                    BlocProvider(
+                                      create: (_) => SearchScreenCubit(),
+                                    ),
+                                  ],
                                   child: PatientHomeScreen(),
                                 ),
                           ),

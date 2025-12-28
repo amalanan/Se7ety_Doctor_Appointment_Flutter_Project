@@ -44,3 +44,7 @@ export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:firebase_auth/firebase_auth.dart';
 export 'package:firebase_core/firebase_core.dart';
 export 'firebase_options.dart';
+export 'package:se7ety_project/presentation/PatientHomeScreen/pages/patient_appointments.dart';
+export 'package:se7ety_project/presentation/PatientHomeScreen/pages/patient_profile.dart';
+export 'package:se7ety_project/presentation/PatientHomeScreen/Widgets/search_text_field.dart';
+export 'package:se7ety_project/common/widgets/BasicAppBar/basic_app_bar.dart';

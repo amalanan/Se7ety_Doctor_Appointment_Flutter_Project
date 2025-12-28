@@ -1,13 +1,10 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'patient_home_state.dart';
+import '../../../../imports.dart';
 
-class PatientHomeCubit extends Cubit<PatientHomeState> {
-  PatientHomeCubit() : super(PatientHomeInitial());
+class PatientHomeCubit extends Cubit<PatientHomeLoaded> {
+  PatientHomeCubit()
+    : super(PatientHomeLoaded(currentIndex: 0, searchQuery: '', userName: ''));
 
   Future<void> loadHomeData() async {
-
     try {
       final uid = FirebaseAuth.instance.currentUser!.uid;
       final snapshot =
@@ -18,17 +15,23 @@ class PatientHomeCubit extends Cubit<PatientHomeState> {
 
       final name = snapshot['name'];
 
-      emit(PatientHomeLoaded(userName: name, currentIndex: 0));
+      emit(
+        PatientHomeLoaded(
+          userName: name,
+          currentIndex: 0,
+          searchQuery: state.searchQuery,
+        ),
+      );
     } catch (e) {
-      emit(PatientHomeError(e.toString()));
+      emit(PatientHomeError(e.toString()) as PatientHomeLoaded);
     }
   }
 
   void changeBottomNav(int index) {
-    if (state is PatientHomeLoaded) {
-      final currentState = state as PatientHomeLoaded;
+    emit(state.copyWith(currentIndex: index));
+  }
 
-      emit(currentState.copyWith(currentIndex: index));
-    }
+  void goToSearch(String query) {
+    emit(state.copyWith(searchQuery: query, currentIndex: 1));
   }
 }

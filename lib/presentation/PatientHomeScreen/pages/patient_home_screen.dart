@@ -1,6 +1,3 @@
-import 'package:se7ety_project/presentation/PatientHomeScreen/pages/patient_appointments.dart';
-import 'package:se7ety_project/presentation/PatientHomeScreen/pages/patient_profile.dart';
-
 import '../../../imports.dart';
 
 class PatientHomeScreen extends StatelessWidget {
@@ -10,22 +7,34 @@ class PatientHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PatientHomeCubit, PatientHomeState>(
-      builder: (context, state) {
-        if (state is PatientHomeError) {
-          return Scaffold(body: Center(child: Text(state.message)));
-        }
+    return BlocListener<PatientHomeCubit, PatientHomeLoaded>(
+      listener: (context, state) {
+        // أي تغيير تاب → يمسح البحث تلقائياً
+        context.read<SearchScreenCubit>().clearSearch();
+      },
+      child: BlocBuilder<PatientHomeCubit, PatientHomeLoaded>(
+        builder: (context, state) {
+          Widget body;
+          switch (state.currentIndex) {
+            case 0:
+              body = _homeContent(context, state);
+              break;
+            case 1:
+              body = PatientSearchScreen(initialQuery: state.searchQuery);
+              break;
+            case 2:
+              body = PatientAppointmentsScreen();
+              break;
+            case 3:
+              body = PatientProfileScreen();
+              break;
+            default:
+              body = _homeContent(context, state);
+          }
 
-        if (state is PatientHomeLoaded) {
-          final List<Widget> screens = [
-            _homeContent(context, state), // الرئيسية
-            PatientSearchScreen(initialQuery: ''), // البحث
-            PatientAppointmentsScreen(),
-            PatientProfileScreen(),
-          ];
           return Scaffold(
             backgroundColor: Colors.white,
-            body: IndexedStack(index: state.currentIndex, children: screens),
+            body: body,
             bottomNavigationBar: Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: Directionality(
@@ -48,9 +57,8 @@ class PatientHomeScreen extends StatelessWidget {
               ),
             ),
           );
-        }
-        return const Scaffold();
-      },
+        },
+      ),
     );
   }
 
@@ -97,7 +105,23 @@ class PatientHomeScreen extends StatelessWidget {
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 20),
-                _searchField(context),
+                SearchTextField(
+                  onSubmitted: (value) {
+                    final query = value.trim();
+                    if (query.isEmpty) return;
+                    context.read<PatientHomeCubit>().goToSearch(query);
+                  },
+                  iconColor: Colors.white,
+                  searchColor: AppColors.primary,
+                  hintText: 'ابحث عن دكتور',
+                  onPressed: () {
+                    final query = searchController.text.trim();
+                    if (query.isEmpty) return;
+                    context.read<PatientHomeCubit>().goToSearch(query);
+                  },
+
+                  searchController: searchController,
+                ),
                 const SizedBox(height: 20),
                 Text(
                   'التخصصات',
@@ -188,61 +212,6 @@ class PatientHomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _searchField(BuildContext context) {
-    return TextField(
-      controller: searchController,
-      keyboardType: TextInputType.name,
-      decoration: InputDecoration(
-        hintText: 'ابحث عن دكتور',
-        hintStyle: TextStyle(color: Colors.black),
-        suffixIcon: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.primary,
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 18),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-          ),
-          onPressed: () {
-            final query = searchController.text.trim();
-            if (query.isEmpty) return;
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => PatientSearchScreen(initialQuery: query),
-              ),
-            );
-          },
-          child: Icon(Icons.search, color: Colors.white, size: 30),
-        ),
-        filled: true,
-        fillColor: Colors.blue.withOpacity(0.09),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: BorderSide.none,
-        ),
-        contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: BorderSide.none,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: BorderSide.none,
-        ),
-      ),
-      onSubmitted: (value) {
-        if (value.trim().isEmpty) return;
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => PatientSearchScreen(initialQuery: value.trim()),
-          ),
-        );
-      },
-    );
-  }
-
   Widget _navItem(
     BuildContext context,
     IconData icon,
@@ -254,6 +223,11 @@ class PatientHomeScreen extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
+        // أولاً نمسح البحث
+        searchController.clear();
+        context.read<SearchScreenCubit>().clearSearch();
+
+        // بعدين نغيّر التاب
         context.read<PatientHomeCubit>().changeBottomNav(index);
       },
       child: Container(

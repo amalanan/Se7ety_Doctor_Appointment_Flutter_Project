@@ -8,5 +8,6 @@ class AppImages{
   static const String onBoarding3 = '${basePath}on3$format';
   static const String welcomeBackground = '${basePath}welcome-bg$format';
   static const String doctorCard = '${basePath}doctor-card$format';
+  static const String noSearch = '${basePath}no_search$format';
 
 }
