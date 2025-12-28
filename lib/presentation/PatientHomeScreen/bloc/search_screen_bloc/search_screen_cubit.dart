@@ -1,6 +1,4 @@
 import 'package:se7ety_project/data/models/user.dart';
-import 'package:se7ety_project/presentation/PatientHomeScreen/bloc/search_screen_bloc/search_screen_state.dart';
-
 import '../../../../imports.dart';
 
 class SearchScreenCubit extends Cubit<SearchScreenState> {

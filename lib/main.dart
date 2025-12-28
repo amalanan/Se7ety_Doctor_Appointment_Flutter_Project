@@ -1,9 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'firebase_options.dart';
 import 'imports.dart';
+import 'package:device_preview/device_preview.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,10 +10,13 @@ void main() async {
   print(FirebaseAuth.instance.currentUser?.displayName);
 
   await initializeDependencies();
-  runApp(MyApp());
+  runApp(
+    DevicePreview(
+      enabled: true, // خليها false لو بدك تطفئيها
+      builder: (context) => const MyApp(),
+    ),
+  );
 }
-
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -27,6 +26,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: AppTheme.appTheme,
       debugShowCheckedModeBanner: false,
+      useInheritedMediaQuery: true,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
       home: SplashScreen(),
     );
   }

@@ -40,3 +40,7 @@ export 'package:se7ety_project/presentation/PatientHomeScreen/bloc/home_screen_b
 export 'package:se7ety_project/presentation/PatientHomeScreen/bloc/search_screen_bloc/search_screen_cubit.dart';
 export 'package:se7ety_project/presentation/PatientHomeScreen/bloc/search_screen_bloc/search_screen_state.dart';
 export 'package:se7ety_project/presentation/PatientHomeScreen/pages/patient_search_screen.dart';
+export 'package:cloud_firestore/cloud_firestore.dart';
+export 'package:firebase_auth/firebase_auth.dart';
+export 'package:firebase_core/firebase_core.dart';
+export 'firebase_options.dart';
