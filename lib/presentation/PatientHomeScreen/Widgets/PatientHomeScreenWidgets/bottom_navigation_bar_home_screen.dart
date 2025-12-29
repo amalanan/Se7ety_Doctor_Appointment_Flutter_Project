@@ -1,4 +1,4 @@
-import '../../../imports.dart';
+import '../../../../imports.dart';
 
 class BottomNavigationBarHomeScreen extends StatelessWidget {
   const BottomNavigationBarHomeScreen({

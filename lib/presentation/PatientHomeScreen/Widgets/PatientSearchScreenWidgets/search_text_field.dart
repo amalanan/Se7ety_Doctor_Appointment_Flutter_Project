@@ -1,4 +1,4 @@
-import '../../../imports.dart';
+import '../../../../imports.dart';
 
 class SearchTextField extends StatelessWidget {
   const SearchTextField({
