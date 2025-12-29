@@ -48,3 +48,6 @@ export 'package:se7ety_project/presentation/PatientHomeScreen/pages/patient_appo
 export 'package:se7ety_project/presentation/PatientHomeScreen/pages/patient_profile.dart';
 export 'package:se7ety_project/presentation/PatientHomeScreen/Widgets/search_text_field.dart';
 export 'package:se7ety_project/common/widgets/BasicAppBar/basic_app_bar.dart';
+export 'package:se7ety_project/presentation/PatientHomeScreen/Widgets/bottom_navigation_bar_home_screen.dart';
+export 'package:se7ety_project/presentation/PatientHomeScreen/Widgets/patient_home_content.dart';
+export 'package:se7ety_project/presentation/PatientHomeScreen/Widgets/home_doctor_cards.dart';
