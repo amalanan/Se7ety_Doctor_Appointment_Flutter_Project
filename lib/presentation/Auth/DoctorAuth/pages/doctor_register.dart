@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:se7ety_project/imports.dart';
+import '../../../../imports.dart';
 
 class DoctorRegister extends StatelessWidget {
   const DoctorRegister({super.key});
@@ -9,18 +8,11 @@ class DoctorRegister extends StatelessWidget {
     return Scaffold(
       body: Register(
         roleText: 'دكتور',
-        homeNavigationButton: () {
+        onSuccess: () => DoctorAuthNavigation.toDoctorRegisterContinue(context),
+        onSignIn: () {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (_) => DoctorRegisterContinue()),
-          );
-        },
-        onPressedSignInButton: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => DoctorSignIn(),
-            ),
+            MaterialPageRoute(builder: (_) => const DoctorSignIn()),
           );
         },
       ),

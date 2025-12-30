@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import '../../../../imports.dart';
 
 class DoctorSignIn extends StatelessWidget {
@@ -9,16 +8,11 @@ class DoctorSignIn extends StatelessWidget {
     return Scaffold(
       body: SignIn(
         roleText: 'دكتور',
-        homeNavigationButton: () {
+        onSuccess: () => DoctorAuthNavigation.toDoctorHome(context),
+        onRegister: () {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (_) => DoctorHomeScreen()),
-          );
-        },
-        onPressedRegisterButton: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (_) => DoctorRegister()),
+            MaterialPageRoute(builder: (_) => const DoctorRegister()),
           );
         },
       ),

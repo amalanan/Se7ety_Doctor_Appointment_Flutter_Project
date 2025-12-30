@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../imports.dart';
-import '../../../PatientHomeScreen/bloc/home_screen_bloc/patient_home_cubit.dart';
 
 class PatientSignIn extends StatelessWidget {
   const PatientSignIn({super.key});
@@ -11,26 +8,11 @@ class PatientSignIn extends StatelessWidget {
     return Scaffold(
       body: SignIn(
         roleText: 'مريض',
-        homeNavigationButton:
-            () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder :  (_) => MultiBlocProvider(
-                    providers: [
-                      BlocProvider(create: (_) => PatientHomeCubit()..loadHomeData()),
-                      BlocProvider(create: (_) => SearchScreenCubit()),
-                    ],
-                    child: PatientHomeScreen(),
-                  )
-
-                ),
-              );
-        },
-        onPressedRegisterButton: () {
+        onSuccess: () => AuthNavigation.toPatientHome(context),
+        onRegister: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (_) => PatientRegister()),
+            MaterialPageRoute(builder: (_) => const PatientRegister()),
           );
         },
       ),

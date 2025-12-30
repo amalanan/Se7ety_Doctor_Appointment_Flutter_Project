@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import '../../../../imports.dart';
 
 class PatientRegister extends StatelessWidget {
@@ -9,18 +8,18 @@ class PatientRegister extends StatelessWidget {
     return Scaffold(
       body: Register(
         roleText: 'مريض',
-        homeNavigationButton: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (_) => PatientRegisterContinue()),
-          );
-        },
-        onPressedSignInButton: () {
+        onSuccess: () {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (BuildContext context) => PatientSignIn(),
+              builder: (_) =>  PatientRegisterContinue(),
             ),
+          );
+        },
+        onSignIn: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (_) => const PatientSignIn()),
           );
         },
       ),

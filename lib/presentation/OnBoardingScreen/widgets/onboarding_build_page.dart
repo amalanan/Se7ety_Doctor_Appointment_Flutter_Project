@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
-
 import '../../../imports.dart';
 
 class OnBoardingBuildPage extends StatelessWidget {
-   OnBoardingBuildPage({
+  const OnBoardingBuildPage({
     super.key,
     required this.image,
     required this.title,
@@ -13,7 +11,6 @@ class OnBoardingBuildPage extends StatelessWidget {
   final String image;
   final String title;
   final String subtitle;
-
 
   @override
   Widget build(BuildContext context) {
