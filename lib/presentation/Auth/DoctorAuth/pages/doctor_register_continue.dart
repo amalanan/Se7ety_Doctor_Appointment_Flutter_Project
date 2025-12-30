@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:se7ety_project/imports.dart';
 
-
 class DoctorRegisterContinue extends StatefulWidget {
   DoctorRegisterContinue({super.key});
 
@@ -21,7 +20,6 @@ class _DoctorRegisterContinueState extends State<DoctorRegisterContinue> {
       });
     });
   }
-
 
   final TextEditingController bioController = TextEditingController();
 
@@ -47,16 +45,13 @@ class _DoctorRegisterContinueState extends State<DoctorRegisterContinue> {
       hintText: hint,
       hintTextDirection: TextDirection.rtl,
       hintStyle: const TextStyle(color: Colors.grey),
-      suffixIcon: icon != null
-          ? Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Icon(
-          icon,
-          color: AppColors.primary,
-          size: 30,
-        ),
-      )
-          : null,
+      suffixIcon:
+          icon != null
+              ? Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Icon(icon, color: AppColors.primary, size: 30),
+              )
+              : null,
       filled: true,
       fillColor: Colors.blue.withOpacity(0.09),
       border: OutlineInputBorder(
@@ -76,10 +71,7 @@ class _DoctorRegisterContinueState extends State<DoctorRegisterContinue> {
   }
 
   Widget _buildTitle(String text) {
-    return Align(
-      alignment: Alignment.topRight,
-      child: Text(text),
-    );
+    return Align(alignment: Alignment.topRight, child: Text(text));
   }
 
   Widget _buildTextField({
@@ -96,9 +88,11 @@ class _DoctorRegisterContinueState extends State<DoctorRegisterContinue> {
         controller: controller,
         maxLines: maxLines ?? 1,
         minLines: minLines ?? 1,
-        textAlign: TextAlign.right, // مهم للنص العربي
+        textAlign: TextAlign.right,
+        // مهم للنص العربي
         textAlignVertical: TextAlignVertical.top,
-        keyboardType: TextInputType.text, // بدل emailAddress
+        keyboardType: TextInputType.text,
+        // بدل emailAddress
         decoration: _buildDecoration(
           hint: hint,
           icon: icon,
@@ -106,7 +100,6 @@ class _DoctorRegisterContinueState extends State<DoctorRegisterContinue> {
         ),
       ),
     );
-
   }
 
   Widget _buildDropdown() {
@@ -123,10 +116,7 @@ class _DoctorRegisterContinueState extends State<DoctorRegisterContinue> {
         decoration: _buildDecoration(hint: ' '),
         hint: const Align(
           alignment: Alignment.topRight,
-          child: Text(
-            'اختر تخصصك',
-            style: TextStyle(color: Colors.black),
-          ),
+          child: Text('اختر تخصصك', style: TextStyle(color: Colors.black)),
         ),
         items: const [
           DropdownMenuItem(
@@ -152,10 +142,8 @@ class _DoctorRegisterContinueState extends State<DoctorRegisterContinue> {
             ),
           ),
         ],
-          onChanged: (value) {
-            selectedSpecialization = value;
-
-
+        onChanged: (value) {
+          selectedSpecialization = value;
         },
       ),
     );
@@ -165,6 +153,7 @@ class _DoctorRegisterContinueState extends State<DoctorRegisterContinue> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: AppColors.primary,
         title: const Text(
           'إكمال عملية التسجيل',
@@ -186,9 +175,11 @@ class _DoctorRegisterContinueState extends State<DoctorRegisterContinue> {
                 CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 80,
-                  backgroundImage: (profileImageUrl != null && profileImageUrl!.isNotEmpty)
-                      ? NetworkImage(profileImageUrl!)
-                      : const AssetImage(AppImages.splashLogo) as ImageProvider,
+                  backgroundImage:
+                      (profileImageUrl != null && profileImageUrl!.isNotEmpty)
+                          ? NetworkImage(profileImageUrl!)
+                          : const AssetImage(AppImages.splashLogo)
+                              as ImageProvider,
                 ),
 
                 const SizedBox(height: 20),
@@ -199,17 +190,14 @@ class _DoctorRegisterContinueState extends State<DoctorRegisterContinue> {
                 const SizedBox(height: 10),
                 _buildTitle('العمر'),
                 const SizedBox(height: 10),
-                _buildTextField(
-                  controller: ageController,
-                  hint: '20',
-                ),
+                _buildTextField(controller: ageController, hint: '20'),
                 const SizedBox(height: 10),
                 _buildTitle('نبذة تعريفية'),
                 const SizedBox(height: 10),
                 _buildTextField(
                   controller: bioController,
                   hint:
-                  'سجل المعلومات الطبية العامة مقل تعليمك الأكاديمي وخبراتك السابقة..',
+                      'سجل المعلومات الطبية العامة مقل تعليمك الأكاديمي وخبراتك السابقة..',
                   radius: 30,
                   maxLines: 6,
                   minLines: 4,
@@ -226,10 +214,7 @@ class _DoctorRegisterContinueState extends State<DoctorRegisterContinue> {
                 const SizedBox(height: 20),
                 _buildTitle('المدينة'),
                 const SizedBox(height: 10),
-                _buildTextField(
-                  controller: cityController,
-                  hint: 'غزة',
-                ),
+                _buildTextField(controller: cityController, hint: 'غزة'),
                 const SizedBox(height: 10),
 
                 Row(
@@ -290,26 +275,28 @@ class _DoctorRegisterContinueState extends State<DoctorRegisterContinue> {
                     // إنشاء request من الـ controllers
                     final request = CompleteDoctorRegisterationRequest(
                       city: cityController.text,
-                      age:int.parse(ageController.text),
+                      age: int.parse(ageController.text),
                       imageUrl: imageUrlController.text,
                       bio: bioController.text,
                       phone: phoneController.text,
                       clinicAddress: clinicAddressController.text,
-                      specialization: selectedSpecialization ?? '', // لازم يكون عندك controller
+                      specialization: selectedSpecialization ?? '',
+                      // لازم يكون عندك controller
                       workingHoursFrom: fromController.text,
                       workingHoursTo: toController.text,
                     );
 
                     // استدعاء use case
-                    var result = await sl<CompleteDoctorRegisterationUsecase>().call(params: request);
+                    var result = await sl<CompleteDoctorRegisterationUsecase>()
+                        .call(params: request);
 
                     // التعامل مع النتيجة
                     result.fold(
-                          (l) {
+                      (l) {
                         final snackbar = SnackBar(content: Text(l));
                         ScaffoldMessenger.of(context).showSnackBar(snackbar);
                       },
-                          (r) {
+                      (r) {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(builder: (_) => DoctorHomeScreen()),

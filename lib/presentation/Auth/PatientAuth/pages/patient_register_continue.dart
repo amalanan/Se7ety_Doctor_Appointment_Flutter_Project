@@ -1,11 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:se7ety_project/imports.dart';
 
-import '../../../PatientHomeScreen/bloc/home_screen_bloc/patient_home_cubit.dart';
 
 class PatientRegisterContinue extends StatefulWidget {
-  PatientRegisterContinue({super.key});
+ const PatientRegisterContinue({super.key});
 
   @override
   State<PatientRegisterContinue> createState() =>
@@ -101,6 +98,7 @@ class _PatientRegisterContinueState extends State<PatientRegisterContinue> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: AppColors.primary,
         title: const Text(
           'إكمال عملية التسجيل',
