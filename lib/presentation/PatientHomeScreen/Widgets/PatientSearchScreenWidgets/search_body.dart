@@ -1,11 +1,7 @@
-
 import '../../../../imports.dart';
 
 class SearchBody extends StatelessWidget {
-  const SearchBody({
-    super.key,
-    required this.searchController,
-  });
+  const SearchBody({super.key, required this.searchController});
 
   final TextEditingController searchController;
 

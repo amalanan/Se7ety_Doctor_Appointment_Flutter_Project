@@ -1,10 +1,7 @@
 import '../../../../imports.dart';
 
 class SearchInputSection extends StatelessWidget {
-  const SearchInputSection({
-    super.key,
-    required this.searchController,
-  });
+  const SearchInputSection({super.key, required this.searchController});
 
   final TextEditingController searchController;
 

@@ -21,11 +21,9 @@ class SearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-
       controller: searchController,
       keyboardType: TextInputType.name,
       decoration: InputDecoration(
-
         hintText: hintText,
         hintStyle: TextStyle(color: Colors.black),
         suffixIcon: ElevatedButton(
@@ -51,7 +49,6 @@ class SearchTextField extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
           borderSide: BorderSide.none,
-
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),

@@ -1,10 +1,7 @@
 import '../../../../imports.dart';
 
 class SearchLoadedView extends StatelessWidget {
-  const SearchLoadedView({
-    super.key,
-    required this.doctors,
-  });
+  const SearchLoadedView({super.key, required this.doctors});
 
   final List doctors;
 
@@ -35,10 +32,9 @@ class SearchLoadedView extends StatelessWidget {
               leading: CircleAvatar(
                 radius: 35,
                 backgroundImage:
-                doctor.imageUrl != null
-                    ? NetworkImage(doctor.imageUrl!)
-                    : AssetImage(AppImages.splashLogo)
-                as ImageProvider,
+                    doctor.imageUrl != null
+                        ? NetworkImage(doctor.imageUrl!)
+                        : AssetImage(AppImages.splashLogo) as ImageProvider,
                 backgroundColor: Colors.white,
               ),
               title: Text(

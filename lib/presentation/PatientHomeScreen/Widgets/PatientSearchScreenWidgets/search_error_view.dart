@@ -1,10 +1,7 @@
 import '../../../../imports.dart';
 
 class SearchErrorView extends StatelessWidget {
-  const SearchErrorView({
-    super.key,
-    required this.message,
-  });
+  const SearchErrorView({super.key, required this.message});
 
   final String message;
 
@@ -15,10 +12,7 @@ class SearchErrorView extends StatelessWidget {
         padding: const EdgeInsets.all(30.0),
         child: Text(
           message,
-          style: const TextStyle(
-            color: AppColors.primary,
-            fontSize: 18,
-          ),
+          style: const TextStyle(color: AppColors.primary, fontSize: 18),
         ),
       ),
     );
