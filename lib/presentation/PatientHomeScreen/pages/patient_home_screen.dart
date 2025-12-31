@@ -1,4 +1,5 @@
 import '../../../imports.dart';
+import '../bloc/patient_profile_bloc/patient_profile_cubit.dart';
 
 class PatientHomeScreen extends StatelessWidget {
   PatientHomeScreen({super.key});
@@ -29,7 +30,10 @@ class PatientHomeScreen extends StatelessWidget {
               body = PatientAppointmentsScreen();
               break;
             case 3:
-              body = PatientProfileScreen();
+              body =  BlocProvider(
+                create: (_) => PatientProfileCubit()..loadProfile(),
+                child: const PatientProfileScreen(),
+              );
               break;
             default:
               body = PatientHomeContent(

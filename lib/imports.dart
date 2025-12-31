@@ -74,3 +74,4 @@ export 'package:se7ety_project/presentation/Auth/widgets/SignInWidgets/auth_pass
 export 'package:se7ety_project/presentation/Auth/widgets/RegisterWidgets/register_field.dart';
 export 'package:se7ety_project/presentation/Auth/widgets/RegisterWidgets/auth_name_field.dart';
 export 'package:se7ety_project/presentation/Auth/widgets/RegisterWidgets/section_title.dart';
+export 'package:se7ety_project/presentation/PatientHomeScreen/bloc/patient_profile_bloc/patient_profile_state.dart';
