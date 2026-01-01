@@ -1,10 +1,12 @@
+import '../../../../data/models/user.dart';
 import '../../../../imports.dart';
 
 class SearchLoadedView extends StatelessWidget {
-  const SearchLoadedView({required this.onTap, super.key, required this.doctors});
+  final List<UserModel> doctors;
 
-  final List doctors;
-final VoidCallback onTap;
+  const SearchLoadedView({super.key, required this.doctors, required this.onTap});
+
+  final void Function(UserModel doctor) onTap; // ناخد الـ doctor
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -15,7 +17,7 @@ final VoidCallback onTap;
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 5),
           child: GestureDetector(
-            onTap: onTap,
+            onTap: () => onTap(doctor), // استخدمي closure
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.blue.withOpacity(0.1),

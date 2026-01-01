@@ -84,3 +84,12 @@ export 'package:se7ety_project/presentation/PatientHomeScreen/Widgets/PatientHom
 export 'package:se7ety_project/presentation/PatientHomeScreen/Widgets/SettingsScreenWidgets/edit_profile_field_dialog.dart';
 export 'package:se7ety_project/presentation/PatientHomeScreen/Widgets/SettingsScreenWidgets/patient_account_settings_body.dart';
 export 'package:se7ety_project/presentation/PatientHomeScreen/Widgets/PatientProfileWidgets/profile_body.dart';
+export '../../../data/models/user.dart';
+export 'package:se7ety_project/presentation/PatientHomeScreen/Widgets/DoctorDataWidgets/divider_section.dart';
+export 'package:se7ety_project/presentation/PatientHomeScreen/Widgets/DoctorDataWidgets/doctor_appointment_button.dart';
+export 'package:se7ety_project/presentation/PatientHomeScreen/Widgets/DoctorDataWidgets/doctor_bio_section.dart';
+export 'package:se7ety_project/presentation/PatientHomeScreen/Widgets/DoctorDataWidgets/doctor_clinic_section.dart';
+export 'package:se7ety_project/presentation/PatientHomeScreen/Widgets/DoctorDataWidgets/doctor_contacts_section.dart';
+export 'package:se7ety_project/presentation/PatientHomeScreen/Widgets/DoctorDataWidgets/doctor_header_section.dart';
+export 'package:se7ety_project/presentation/PatientHomeScreen/pages/doctor_data_screen.dart';
+export 'package:se7ety_project/presentation/PatientHomeScreen/pages/book_anappointment_screen.dart';

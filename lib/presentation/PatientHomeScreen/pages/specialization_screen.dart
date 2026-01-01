@@ -1,5 +1,4 @@
 import '../../../imports.dart';
-import 'doctor_data_screen.dart';
 
 class SpecializationScreen extends StatelessWidget {
   const SpecializationScreen({super.key, required this.specialization});
@@ -25,9 +24,9 @@ class SpecializationScreen extends StatelessWidget {
             if (state is SearchLoaded) {
               return SearchLoadedView(
                 doctors: state.results,
-                onTap: () {
+                onTap: (doctor) {
                   Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => DoctorDataScreen()),
+                    MaterialPageRoute(builder: (context) => DoctorDataScreen(doctor: doctor,)),
                   );
                 },
               );

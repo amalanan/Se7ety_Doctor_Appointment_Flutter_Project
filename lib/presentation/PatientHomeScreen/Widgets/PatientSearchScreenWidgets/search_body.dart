@@ -1,4 +1,3 @@
-import 'package:se7ety_project/presentation/PatientHomeScreen/pages/doctor_data_screen.dart';
 
 import '../../../../imports.dart';
 
@@ -25,9 +24,9 @@ class SearchBody extends StatelessWidget {
           }
           return SearchLoadedView(
             doctors: state.results,
-            onTap: () {
+            onTap: (doctor) {
               Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => DoctorDataScreen()),
+                MaterialPageRoute(builder: (context) => DoctorDataScreen(doctor: doctor,)),
               );
             },
           );
