@@ -20,8 +20,7 @@ class SettingsScreenBody extends StatelessWidget {
                 icon: Icons.person,
                 trailing: IconButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
+                    Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (_) => BlocProvider.value(
                           value: context.read<PatientProfileCubit>(), // نشارك نفس الـ Cubit
@@ -29,9 +28,7 @@ class SettingsScreenBody extends StatelessWidget {
                         ),
                       ),
                     );
-
                   },
-
                   icon: Icon(Icons.arrow_forward_ios),
                 ),
                 title: 'إعدادات الحساب',
