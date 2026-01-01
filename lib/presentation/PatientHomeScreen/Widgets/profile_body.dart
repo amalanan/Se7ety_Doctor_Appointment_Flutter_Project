@@ -43,7 +43,6 @@ class ProfileBody extends StatelessWidget {
                   ),
                 ],
               ),
-
               const SizedBox(height: 20),
               const Text(
                 'نبذة تعريفية',

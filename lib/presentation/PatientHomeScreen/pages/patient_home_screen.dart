@@ -30,7 +30,7 @@ class PatientHomeScreen extends StatelessWidget {
               body = PatientAppointmentsScreen();
               break;
             case 3:
-              body =  BlocProvider(
+              body = BlocProvider(
                 create: (_) => PatientProfileCubit()..loadProfile(),
                 child: const PatientProfileScreen(),
               );
