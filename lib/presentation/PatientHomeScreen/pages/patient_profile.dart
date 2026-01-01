@@ -1,6 +1,4 @@
 import '../../../imports.dart';
-import '../Widgets/PatientProfileWidgets/profile_body.dart';
-import '../bloc/patient_profile_bloc/patient_profile_cubit.dart';
 
 class PatientProfileScreen extends StatelessWidget {
   const PatientProfileScreen({super.key});

@@ -1,5 +1,4 @@
 import '../../../imports.dart';
-import '../bloc/patient_profile_bloc/patient_profile_cubit.dart';
 
 class PatientHomeScreen extends StatelessWidget {
   PatientHomeScreen({super.key});
@@ -43,52 +42,10 @@ class PatientHomeScreen extends StatelessWidget {
               );
           }
 
-          return Scaffold(
-            backgroundColor: Colors.white,
+          return HomeScreenScaffold(
             body: body,
-            bottomNavigationBar: Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: Directionality(
-                textDirection: TextDirection.rtl,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    BottomNavigationBarHomeScreen(
-                      searchController: searchController,
-                      context: context,
-                      icon: Icons.home,
-                      label: 'الرئيسية',
-                      index: 0,
-                      state: state,
-                    ),
-                    BottomNavigationBarHomeScreen(
-                      searchController: searchController,
-                      context: context,
-                      icon: Icons.search,
-                      label: 'البحث',
-                      index: 1,
-                      state: state,
-                    ),
-                    BottomNavigationBarHomeScreen(
-                      searchController: searchController,
-                      context: context,
-                      icon: Icons.calendar_month,
-                      label: 'المواعيد',
-                      index: 2,
-                      state: state,
-                    ),
-                    BottomNavigationBarHomeScreen(
-                      searchController: searchController,
-                      context: context,
-                      icon: Icons.person,
-                      label: 'الحساب',
-                      index: 3,
-                      state: state,
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            searchController: searchController,
+            state: state,
           );
         },
       ),
