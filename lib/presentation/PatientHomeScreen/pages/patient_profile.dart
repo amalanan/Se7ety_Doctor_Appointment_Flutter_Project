@@ -1,5 +1,5 @@
 import '../../../imports.dart';
-import '../Widgets/profile_body.dart';
+import '../Widgets/PatientProfileWidgets/profile_body.dart';
 import '../bloc/patient_profile_bloc/patient_profile_cubit.dart';
 
 class PatientProfileScreen extends StatelessWidget {
@@ -9,7 +9,18 @@ class PatientProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BasicAppBar(
-        icon: const Icon(Icons.settings, color: Colors.white),
+        onLeadingPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => BlocProvider.value(
+                value: context.read<PatientProfileCubit>(), // نشارك نفس الـ Cubit
+                child: const PatientSettingsScreen(),
+              ),
+            ),
+          );
+
+        },
+        icon: Icons.settings,
         appTitle: 'الحساب الشخصي',
       ),
       body: BlocBuilder<PatientProfileCubit, PatientProfileState>(

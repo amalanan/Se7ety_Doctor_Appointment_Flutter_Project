@@ -12,7 +12,6 @@ class SearchLoadedView extends StatelessWidget {
       itemCount: doctors.length,
       itemBuilder: (context, index) {
         final doctor = doctors[index];
-
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 5),
           child: Container(
@@ -25,7 +24,10 @@ class SearchLoadedView extends StatelessWidget {
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: const [
-                  Text(' 3 ', style: TextStyle(fontSize: 15)),
+                  Text(
+                    ' 3 ',
+                    style: TextStyle(fontSize: 15, color: Colors.black),
+                  ),
                   Icon(Icons.star, color: Colors.orange, size: 20),
                 ],
               ),

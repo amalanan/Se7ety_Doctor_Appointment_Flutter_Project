@@ -75,3 +75,5 @@ export 'package:se7ety_project/presentation/Auth/widgets/RegisterWidgets/registe
 export 'package:se7ety_project/presentation/Auth/widgets/RegisterWidgets/auth_name_field.dart';
 export 'package:se7ety_project/presentation/Auth/widgets/RegisterWidgets/section_title.dart';
 export 'package:se7ety_project/presentation/PatientHomeScreen/bloc/patient_profile_bloc/patient_profile_state.dart';
+export 'package:se7ety_project/presentation/PatientHomeScreen/pages/patient_settings_screen.dart';
+export 'package:se7ety_project/presentation/PatientHomeScreen/pages/patient_account_settings.dart';

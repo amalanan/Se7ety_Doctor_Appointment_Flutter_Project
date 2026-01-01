@@ -9,13 +9,15 @@ class BasicAppButton extends StatelessWidget {
     required this.buttonText,
     required this.onPressed,
     required this.circularBorder,
-    this.horizontalSymmetric = 105
+    this.horizontalSymmetric = 105,
+     this.verticalSymmetric = 16
   });
 
   final String buttonText;
   final VoidCallback onPressed;
   final double circularBorder;
    double horizontalSymmetric;
+   double verticalSymmetric;
 
 
   @override
@@ -24,7 +26,7 @@ class BasicAppButton extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
-        padding: EdgeInsets.symmetric(horizontal: horizontalSymmetric , vertical: 16),
+        padding: EdgeInsets.symmetric(horizontal: horizontalSymmetric , vertical: verticalSymmetric),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(circularBorder),
         ),

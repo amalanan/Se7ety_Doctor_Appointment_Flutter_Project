@@ -1,3 +1,4 @@
+
 import 'imports.dart';
 import 'package:device_preview/device_preview.dart';
 
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
-      home: SplashScreen(),
+      home: WelcomePage(),
     );
   }
 }
