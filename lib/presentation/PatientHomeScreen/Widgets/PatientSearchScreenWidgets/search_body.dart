@@ -1,3 +1,5 @@
+import 'package:se7ety_project/presentation/PatientHomeScreen/pages/doctor_data_screen.dart';
+
 import '../../../../imports.dart';
 
 class SearchBody extends StatelessWidget {
@@ -21,7 +23,14 @@ class SearchBody extends StatelessWidget {
           if (state.results.isEmpty) {
             return const Center(child: Text('لا يوجد دكاترة'));
           }
-          return SearchLoadedView(doctors: state.results);
+          return SearchLoadedView(
+            doctors: state.results,
+            onTap: () {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => DoctorDataScreen()),
+              );
+            },
+          );
         }
 
         if (state is SearchError) {
