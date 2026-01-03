@@ -35,7 +35,6 @@ class SpecializationScreen extends StatelessWidget {
             if (state is SearchError) {
               return Center(child: Text(state.message));
             }
-
             return const SizedBox();
           },
         ),

@@ -1,4 +1,3 @@
-
 abstract class PatientProfileState {}
 
 class PatientProfileLoading extends PatientProfileState {}
@@ -19,12 +18,12 @@ class PatientProfileLoaded extends PatientProfileState {
     required this.email,
     required this.phone,
     required this.imageUrl,
-    required this.age
+    required this.age,
   });
 }
 
 class PatientProfileError extends PatientProfileState {
   final String message;
+
   PatientProfileError(this.message);
 }
-
