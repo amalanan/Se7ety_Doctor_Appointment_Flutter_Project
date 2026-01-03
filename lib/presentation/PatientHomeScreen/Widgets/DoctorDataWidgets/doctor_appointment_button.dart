@@ -1,7 +1,9 @@
 import '../../../../imports.dart';
 
 class BookAppointmentButton extends StatelessWidget {
-  const BookAppointmentButton({super.key});
+  const BookAppointmentButton({super.key, required this.doctor});
+
+  final UserModel doctor;
 
   @override
   Widget build(BuildContext context) {
@@ -11,14 +13,13 @@ class BookAppointmentButton extends StatelessWidget {
       circularBorder: 12,
       onPressed: () async {
         await FirebaseAuth.instance.signOut();
-        Navigator.pushAndRemoveUntil(
+        Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => const BookAnAppointmentScreen(),
-          ),
-              (route) => false,
-        );
+            builder: (_) => BookAnAppointmentScreen(doctor: doctor),
+          ),);
       },
     );
   }
 }
+
