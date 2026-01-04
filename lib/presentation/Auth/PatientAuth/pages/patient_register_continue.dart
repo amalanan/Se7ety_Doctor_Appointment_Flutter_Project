@@ -1,8 +1,7 @@
 import 'package:se7ety_project/imports.dart';
 
-
 class PatientRegisterContinue extends StatefulWidget {
- const PatientRegisterContinue({super.key});
+  const PatientRegisterContinue({super.key});
 
   @override
   State<PatientRegisterContinue> createState() =>

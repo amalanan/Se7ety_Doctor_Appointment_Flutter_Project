@@ -9,7 +9,7 @@ class PatientProfileLoaded extends PatientProfileState {
   final String email;
   final String phone;
   final String imageUrl;
-  final int age;
+  final String age;
 
   PatientProfileLoaded({
     required this.name,

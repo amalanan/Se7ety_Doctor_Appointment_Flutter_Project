@@ -1,4 +1,5 @@
 import '../../../../imports.dart';
+import '../../pages/account_settings.dart';
 
 class SettingsScreenBody extends StatelessWidget {
   const SettingsScreenBody({
@@ -22,10 +23,10 @@ class SettingsScreenBody extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (_) => BlocProvider.value(
-                          value: context.read<PatientProfileCubit>(), // نشارك نفس الـ Cubit
-                          child: const PatientAccountSettings(),
-                        ),
+                        builder: (_) =>  BlocProvider(
+                          create: (_) => PatientProfileCubit()..loadProfile(),
+                          child: const AccountSettings(),
+                        )
                       ),
                     );
                   },

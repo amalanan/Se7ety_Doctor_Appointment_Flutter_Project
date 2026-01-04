@@ -1,3 +1,5 @@
+import 'package:se7ety_project/presentation/PatientHomeScreen/bloc/booking_appointments_bloc/booking_cubit.dart';
+
 import '../../../../imports.dart';
 
 class BookAppointmentButton extends StatelessWidget {
@@ -12,11 +14,14 @@ class BookAppointmentButton extends StatelessWidget {
       buttonText: 'احجز موعد الان',
       circularBorder: 12,
       onPressed: () async {
-        await FirebaseAuth.instance.signOut();
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => BookAnAppointmentScreen(doctor: doctor),
+            builder:
+                (_) => BlocProvider(
+                  create: (_) => BookingCubit(),
+                  child: BookAnAppointmentScreen(doctor: doctor),
+                ),
           ),
         );
       },

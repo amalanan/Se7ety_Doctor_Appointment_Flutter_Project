@@ -76,7 +76,7 @@ export 'package:se7ety_project/presentation/Auth/widgets/RegisterWidgets/auth_na
 export 'package:se7ety_project/presentation/Auth/widgets/RegisterWidgets/section_title.dart';
 export 'package:se7ety_project/presentation/PatientHomeScreen/bloc/patient_profile_bloc/patient_profile_state.dart';
 export 'package:se7ety_project/presentation/PatientHomeScreen/pages/patient_settings_screen.dart';
-export 'package:se7ety_project/presentation/PatientHomeScreen/pages/patient_account_settings.dart';
+export 'package:se7ety_project/presentation/PatientHomeScreen/pages/account_settings.dart';
 export 'package:se7ety_project/presentation/PatientHomeScreen/Widgets/PatientProfileWidgets/settings_list_tile.dart';
 export 'package:se7ety_project/presentation/PatientHomeScreen/Widgets/SettingsScreenWidgets/settings_screen_body.dart';
 export 'package:se7ety_project/presentation/PatientHomeScreen/bloc/patient_profile_bloc/patient_profile_cubit.dart';

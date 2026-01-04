@@ -38,6 +38,8 @@ class DoctorDataScreen extends StatelessWidget {
                 DoctorContactSection(doctor: doctor),
                 SizedBox(height: 60),
                 BookAppointmentButton(doctor: doctor,),
+                const SizedBox(height: 30),
+
               ],
             ),
           ),

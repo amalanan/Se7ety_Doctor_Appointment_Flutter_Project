@@ -14,7 +14,7 @@ class BasicAppButton extends StatelessWidget {
   });
 
   final String buttonText;
-  final VoidCallback onPressed;
+  final void Function()? onPressed;
   final double circularBorder;
    double horizontalSymmetric;
    double verticalSymmetric;

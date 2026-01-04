@@ -6,25 +6,24 @@ class PatientProfileCubit extends Cubit<PatientProfileState> {
   Future<void> loadProfile() async {
     try {
       final uid = FirebaseAuth.instance.currentUser!.uid;
-
-      final doc =
-      await FirebaseFirestore.instance
+      final doc = await FirebaseFirestore.instance
           .collection('se7ety_users')
           .doc(uid)
           .get();
 
-      emit(
-        PatientProfileLoaded(
-          name: doc['name'],
-          city: doc['city'],
-          bio: doc['bio'],
-          email: doc['email'],
-          phone: doc['phone'],
-          imageUrl: doc['imageUrl'],
-          age: doc['age'],
-        ),
-      );
+      print('Loaded doc: ${doc.data()}'); // ✅ تتأكدي أن البيانات رجعت من Firebase
+
+      emit(PatientProfileLoaded(
+        name: doc['name'],
+        city: doc['city'],
+        bio: doc['bio'],
+        email: doc['email'],
+        phone: doc['phone'],
+        imageUrl: doc['imageUrl'],
+        age: doc['age'],
+      ));
     } catch (e) {
+      print('Error loading profile: $e'); // 🔴 تتأكدي إذا في خطأ
       emit(PatientProfileError(e.toString()));
     }
   }

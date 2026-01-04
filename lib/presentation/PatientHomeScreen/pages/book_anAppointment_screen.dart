@@ -1,7 +1,9 @@
 import '../../../imports.dart';
+import '../bloc/booking_appointments_bloc/booking_cubit.dart';
+import '../bloc/booking_appointments_bloc/booking_state.dart';
 
 class BookAnAppointmentScreen extends StatefulWidget {
-  BookAnAppointmentScreen({super.key, required this.doctor});
+  const BookAnAppointmentScreen({super.key, required this.doctor});
 
   final UserModel doctor;
 
@@ -13,8 +15,12 @@ class BookAnAppointmentScreen extends StatefulWidget {
 class _BookAnAppointmentScreenState extends State<BookAnAppointmentScreen> {
   final TextEditingController dataController = TextEditingController();
   final TextEditingController bioController = TextEditingController();
-  final TextEditingController bookingDateController = TextEditingController();
+  final TextEditingController bookingDateController = TextEditingController(
+    text:
+        '${DateTime.now().year}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')}',
+  );
   String selectedTime = '';
+  final TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +71,10 @@ class _BookAnAppointmentScreenState extends State<BookAnAppointmentScreen> {
                         style: TextStyle(color: Colors.black, fontSize: 16),
                       ),
                       const SizedBox(height: 10),
-                      _buildTextField(dataController: dataController, hint: ''),
+                      _buildTextField(
+                        dataController: phoneController,
+                        hint: '',
+                      ),
                       const SizedBox(height: 10),
                       Text(
                         'وصف الحالة',
@@ -99,9 +108,54 @@ class _BookAnAppointmentScreenState extends State<BookAnAppointmentScreen> {
                           selectedTime = time;
                         },
                       ),
+                      const SizedBox(height: 30),
+                      BlocConsumer<BookingCubit, BookingState>(
+                        listener: (context, state) {
+                          if (state is BookingSuccess) {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder:
+                                    (_) => PatientAppointmentsScreen(doctor: widget.doctor,),
+                              ),
+                            );
+                          }
+
+                          if (state is BookingError) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text(state.message)),
+                            );
+                          }
+                        },
+                        builder: (context, state) {
+                          return BasicAppButton(
+                            horizontalSymmetric: 130,
+                            verticalSymmetric: 16,
+                            buttonText:
+                                state is BookingLoading
+                                    ? 'جاري التأكيد...'
+                                    : 'تأكيد الحجز',
+                            circularBorder: 12,
+                            onPressed:
+                                state is BookingLoading
+                                    ? null
+                                    : () {
+                                      context.read<BookingCubit>().addBooking(
+                                        doctorName:  widget.doctor,
+                                        patientName: dataController.text,
+                                        phone: phoneController.text,
+                                        description: bioController.text,
+                                        date: bookingDateController.text,
+                                        time: selectedTime,
+                                      );
+                                    },
+                          );
+                        },
+                      ),
                     ],
                   ),
                 ),
+                const SizedBox(height: 30),
               ],
             ),
           ),
@@ -130,7 +184,6 @@ class _BookAnAppointmentScreenState extends State<BookAnAppointmentScreen> {
           // مهم للنص العربي
           textAlignVertical: TextAlignVertical.top,
           keyboardType: TextInputType.text,
-          // بدل emailAddress
           decoration: _buildDecoration(
             hint: hint,
             icon: icon,

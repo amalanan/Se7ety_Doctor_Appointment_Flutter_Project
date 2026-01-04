@@ -13,7 +13,8 @@ class PatientSettingsScreen extends StatelessWidget {
           Navigator.of(context).pop();
         },
       ),
-      body: SettingsScreenBody(),
+      body:
+      SettingsScreenBody(),
     );
   }
 }
