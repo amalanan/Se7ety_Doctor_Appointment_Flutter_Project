@@ -17,9 +17,9 @@ class BookAppointmentButton extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (_) => BookAnAppointmentScreen(doctor: doctor),
-          ),);
+          ),
+        );
       },
     );
   }
 }
-
