@@ -1,5 +1,4 @@
 import '../../../../imports.dart';
-import '../../pages/account_settings.dart';
 
 class SettingsScreenBody extends StatelessWidget {
   const SettingsScreenBody({

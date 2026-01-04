@@ -44,9 +44,10 @@ class PatientAppointmentsScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 final booking = bookings[index];
 
-                final doctorMap = booking['doctorName'] as Map<String, dynamic>?;
+                final doctorMap =
+                    booking['doctorName'] as Map<String, dynamic>?;
                 final bookingDoctor =
-                doctorMap != null ? UserModel.fromJson(doctorMap) : null;
+                    doctorMap != null ? UserModel.fromJson(doctorMap) : null;
 
                 final date = booking['date'] ?? '';
                 final time = booking['time'] ?? '';
@@ -127,7 +128,8 @@ class PatientAppointmentsScreen extends StatelessWidget {
                               Text(
                                 bookingDoctor?.clinicAddress ??
                                     'عنوان العيادة غير متوفر',
-                              ),                            ],
+                              ),
+                            ],
                           ),
                           const SizedBox(height: 15),
                           BasicAppButton(
@@ -158,7 +160,6 @@ class PatientAppointmentsScreen extends StatelessWidget {
                             },
                           ),
                           const SizedBox(height: 10),
-
                         ],
                       ),
                     ),
