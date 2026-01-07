@@ -9,7 +9,6 @@ abstract class AuthFirebaseService {
   Future<Either> completeDoctorInfo(
     CompleteDoctorRegisterationRequest completeDrRegisterReq,
   );
-
   Future<Either> completePatientInfo(
     CompletePatientRegisterationRequest completePatientRegisterReq,
   );
